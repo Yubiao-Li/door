@@ -47,10 +47,8 @@ void setup()
 
 void loop()
 {
-  Serial.println(digitalRead(soundPin));
   if (digitalRead(soundPin) == 0) {
     state = true;
   }
   openDoor();
-  delay(100);
 }
