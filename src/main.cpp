@@ -18,14 +18,15 @@ void openDoor()
 {
   if (state == true)
   {
-    servo1.write(0);
+    servo1.write(40);
     delay(1000);
     servo2.write(180);
-    delay(500);
-    servo2.write(0);
+    // 时间长一点，防止还没转到
+    delay(600);
+    servo2.write(100);
     delay(1000);
     servo1.write(90);
-    delay(1000);
+    delay(3000);
     state = false;
   }
 }
@@ -45,9 +46,11 @@ void setup()
   servo2.attach(servo2pin, minUs, maxUs);
 }
 
-void loop()
+void loop() 
 {
-  if (digitalRead(soundPin) == 0) {
+  if (digitalRead(soundPin) == 0 && state == false) {
+    // 不要太快响应
+    delay(1500);
     state = true;
   }
   openDoor();
